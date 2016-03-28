@@ -16,16 +16,6 @@ module Spree
       helper "spree/admin/simple_reports"
       include SimpleReportsHelper
 
-      def total_sales_of_each_product
-        @variants = Variant.joins(:product, line_items: :order)
-                    .select("spree_variants.id, spree_products.slug as product_id, spree_products.name as name, sku, SUM(spree_line_items.quantity) as quantity, SUM((spree_line_items.price * spree_line_items.quantity) + spree_line_items.adjustment_total) as total_price")
-                    .merge(Order.complete.completed_between(completed_at_gt, completed_at_lt))
-                    .group("spree_variants.id, spree_products.id, spree_products.name")
-        if supports_store_id? && store_id
-          @variants = @variants.where("spree_orders.store_id" => store_id)
-        end
-      end
-
       def ten_days_order_count
         @counts = n_day_order_count(10)
       end
