@@ -16,7 +16,7 @@ module Spree
       include SimpleReportsHelper
 
       def ten_days_order_count
-        @counts = n_day_order_count(10)
+        @counts = n_day_order_count(7)
       end
 
       def thirty_days_order_count
