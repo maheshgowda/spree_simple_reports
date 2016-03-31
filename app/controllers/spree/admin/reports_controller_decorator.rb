@@ -4,7 +4,7 @@ module Spree
 
       module SimpleReport
         def initialize
-          ReportsController.add_available_report!(:one_week_order_count)
+          ReportsController.add_available_report!(:ten_days_order_count)
           ReportsController.add_available_report!(:thirty_days_order_count)
           super
         end
@@ -16,7 +16,7 @@ module Spree
       include SimpleReportsHelper
 
       def ten_days_order_count
-        @counts = n_day_order_count(7)
+        @counts = n_day_order_count(10)
       end
 
       def thirty_days_order_count
